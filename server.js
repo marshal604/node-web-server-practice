@@ -3,6 +3,9 @@ const hbs = require('hbs');
 const fs = require('fs');
 const app = express();
 
+// 有port讀port，反之則設為3000
+const port = process.env.PORT || 3000;
+
 // 註冊通用模板
 hbs.registerPartials(__dirname + '/views/partials');
 
@@ -30,9 +33,9 @@ app.use((req, res, next) => {
 });
 
 /* 假設在維護可以用這個方式 要維護的東西在這之後就都會是顯示維護中*/
-app.use((req, res, next) => {
-    res.render('maintain.hbs', {});
-})
+// app.use((req, res, next) => {
+//     res.render('maintain.hbs', {});
+// })
 
 // 使用靜態頁面
 app.use(express.static(__dirname + '/public'));
@@ -64,4 +67,6 @@ app.get('/error', (req, res) => {
 })
 
 // 開啟的網頁在哪個port
-app.listen(3000);
+app.listen(port, () => {
+    console.log(`Server is listening on port ${port}`);
+});
