@@ -60,6 +60,12 @@ app.get('/about', (req, res) => {
     });
 })
 
+app.get('/projects', (req, res) => {
+    res.render('project.hbs', {
+        title: 'Project'
+    });
+});
+
 app.get('/error', (req, res) => {
     res.send({
         errorMsg: 'your request is not correct.'
